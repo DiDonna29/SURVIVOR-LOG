@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Day Mode (Surface) */
+    /* Day Mode (Surface Ops) */
     --background: 38 11% 90%; /* #EAE6DF */
     --foreground: 30 8% 22%;
     --card: 36 17% 85%;
@@ -24,7 +25,7 @@
     --border: 30 8% 70%;
     --input: 30 8% 70%;
     --ring: 0 100% 27%;
-    --radius: 0rem; /* Táctico, bordes rectos */
+    --radius: 0rem;
   }
 
   .dark {
@@ -56,7 +57,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body antialiased transition-colors duration-500 selection:bg-primary selection:text-primary-foreground;
+    @apply bg-background text-foreground font-body antialiased transition-colors duration-500 selection:bg-primary selection:text-primary-foreground overflow-x-hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline uppercase tracking-tight;
@@ -66,25 +67,37 @@
 .notebook-page {
   background-image: radial-gradient(circle, #00000011 1px, transparent 1px);
   background-size: 20px 20px;
-  box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
-  border: 1px solid hsl(var(--border));
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  border: 2px solid hsl(var(--border));
+  @apply relative overflow-hidden;
 }
 
 .tactic-border {
-  border: 2px solid hsl(var(--foreground));
-  box-shadow: 4px 4px 0px hsl(var(--primary));
+  border: 3px solid hsl(var(--foreground));
+  box-shadow: 6px 6px 0px hsl(var(--primary));
+  @apply transition-all duration-300;
 }
 
 .item-slot {
-  @apply transition-all duration-300 border-b border-dashed border-foreground/20 py-2 flex items-center justify-between;
+  @apply transition-all duration-300 border-b border-dashed border-foreground/20 py-3 flex items-center justify-between gap-4 w-full overflow-hidden;
 }
 
 .item-found {
-  @apply opacity-40 line-through italic;
-  animation: scratch 0.3s ease-out;
+  @apply opacity-30 italic;
 }
 
-@keyframes scratch {
-  0% { width: 0; }
-  100% { width: 100%; }
+.item-found span {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+/* Scrollbar Táctica */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 hover:bg-primary/40 transition-colors;
 }
