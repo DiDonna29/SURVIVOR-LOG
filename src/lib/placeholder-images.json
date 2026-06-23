@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "survival-base",
+      "description": "Abandoned urban post-apocalyptic base",
+      "imageUrl": "https://picsum.photos/seed/survival1/1200/800",
+      "imageHint": "abandoned city"
+    },
+    {
+      "id": "survival-scout",
+      "description": "Tactical map and survival gear",
+      "imageUrl": "https://picsum.photos/seed/scout2/800/600",
+      "imageHint": "survival gear"
+    }
+  ]
 }
