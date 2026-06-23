@@ -1,18 +1,17 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light Theme (Day Mode) */
+    /* Day Mode (Surface) */
     --background: 38 11% 90%; /* #EAE6DF */
-    --foreground: 30 8% 22%;  /* #3E3A35 */
-    --card: 36 17% 80%;       /* #D6CFC4 */
+    --foreground: 30 8% 22%;
+    --card: 36 17% 85%;
     --card-foreground: 30 8% 22%;
     --popover: 38 11% 90%;
     --popover-foreground: 30 8% 22%;
-    --primary: 0 100% 27%;    /* #8B0000 Dark Red */
+    --primary: 0 100% 27%;    /* #8B0000 */
     --primary-foreground: 0 0% 98%;
     --secondary: 36 17% 75%;
     --secondary-foreground: 30 8% 22%;
@@ -25,29 +24,29 @@
     --border: 30 8% 70%;
     --input: 30 8% 70%;
     --ring: 0 100% 27%;
-    --radius: 0.125rem; /* More tactical, less rounded */
+    --radius: 0rem; /* Táctico, bordes rectos */
   }
 
   .dark {
-    /* Dark Theme (Night Mode) */
+    /* Night Mode (Stealth) */
     --background: 120 2% 16%; /* #2A2B2A */
-    --foreground: 38 11% 90%;  /* #EAE6DF */
-    --card: 154 2% 25%;       /* #3E403F */
+    --foreground: 38 11% 90%;
+    --card: 154 2% 20%;
     --card-foreground: 38 11% 90%;
     --popover: 120 2% 16%;
     --popover-foreground: 38 11% 90%;
-    --primary: 0 68% 42%;    /* #B22222 Ember Red */
+    --primary: 0 68% 42%;    /* #B22222 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 154 2% 20%;
+    --secondary: 154 2% 15%;
     --secondary-foreground: 38 11% 90%;
-    --muted: 154 2% 20%;
+    --muted: 154 2% 15%;
     --muted-foreground: 38 11% 70%;
     --accent: 0 68% 42%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 154 2% 35%;
-    --input: 154 2% 35%;
+    --border: 154 2% 25%;
+    --input: 154 2% 25%;
     --ring: 0 68% 42%;
   }
 }
@@ -57,24 +56,35 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body antialiased selection:bg-primary selection:text-primary-foreground;
+    @apply bg-background text-foreground font-body antialiased transition-colors duration-500 selection:bg-primary selection:text-primary-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline uppercase tracking-tighter;
+    @apply font-headline uppercase tracking-tight;
   }
 }
 
-.tactical-border {
+.notebook-page {
+  background-image: radial-gradient(circle, #00000011 1px, transparent 1px);
+  background-size: 20px 20px;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
   border: 1px solid hsl(var(--border));
-  box-shadow: 2px 2px 0px hsl(var(--foreground));
 }
 
-.found-item {
-  text-decoration: line-through;
-  opacity: 0.6;
-  @apply transition-all duration-300;
+.tactic-border {
+  border: 2px solid hsl(var(--foreground));
+  box-shadow: 4px 4px 0px hsl(var(--primary));
 }
 
-.glitch-hover:hover {
-  @apply animate-glitch;
+.item-slot {
+  @apply transition-all duration-300 border-b border-dashed border-foreground/20 py-2 flex items-center justify-between;
+}
+
+.item-found {
+  @apply opacity-40 line-through italic;
+  animation: scratch 0.3s ease-out;
+}
+
+@keyframes scratch {
+  0% { width: 0; }
+  100% { width: 100%; }
 }
