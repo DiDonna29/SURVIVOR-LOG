@@ -5,9 +5,9 @@ import React from 'react';
 import { ThemeProvider, useTheme } from '@/components/survival/theme-provider';
 import { LanguageProvider, useLanguage } from '@/components/survival/language-provider';
 import { InventoryList } from '@/components/survival/inventory-list';
-import { ScoutTool } from '@/components/survival/scout-tool';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, Languages, ShieldAlert } from 'lucide-react';
+import { Sun, Moon, Languages, ShieldAlert, Terminal, Info } from 'lucide-react';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 function Dashboard() {
   const { t, language, setLanguage } = useLanguage();
@@ -20,7 +20,7 @@ function Dashboard() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-primary">
             <ShieldAlert className="w-6 h-6" />
-            <span className="font-code text-xs font-bold tracking-[0.2em] uppercase animate-pulse">
+            <span className="font-code text-xs font-bold tracking-[0.2em] uppercase">
               System Active: {theme === 'light' ? 'SURFACE' : 'STEALTH'}
             </span>
           </div>
@@ -60,12 +60,33 @@ function Dashboard() {
         <div className="lg:col-span-7 space-y-8">
           <InventoryList />
         </div>
-        <aside className="lg:col-span-5 space-y-8">
-          <ScoutTool />
+        <aside className="lg:col-span-5 space-y-6">
+          <div className="space-y-4">
+            <Alert className="rounded-none tactical-border bg-card border-primary/50">
+              <Terminal className="h-4 w-4 text-primary" />
+              <AlertTitle className="font-headline text-primary uppercase text-xs tracking-widest">
+                {t.notices.protocol}
+              </AlertTitle>
+              <AlertDescription className="text-xs opacity-80 font-body">
+                {t.notices.protocolDesc}
+              </AlertDescription>
+            </Alert>
+
+            <Alert className="rounded-none tactical-border bg-card border-foreground/30">
+              <Info className="h-4 w-4 text-foreground" />
+              <AlertTitle className="font-headline uppercase text-xs tracking-widest">
+                {t.notices.purpose}
+              </AlertTitle>
+              <AlertDescription className="text-xs opacity-80 font-body">
+                {t.notices.purposeDesc}
+              </AlertDescription>
+            </Alert>
+          </div>
+
           <div className="p-6 bg-primary/5 border border-primary/20 font-body text-sm space-y-4">
             <h3 className="font-headline text-primary">Protocol 7-B</h3>
-            <p className="opacity-70">
-              Inventory is secured locally via neural-link persistence. Gear lists remain in memory until manually purged.
+            <p className="opacity-70 italic text-xs">
+              "A silent inventory is a secure inventory. Do not disclose stockpile locations to unverified scouts."
             </p>
             <div className="flex gap-2">
               <div className="h-2 flex-1 bg-primary/20" />

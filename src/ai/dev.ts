@@ -1,4 +1,3 @@
-import { config } from 'dotenv';
-config();
 
-import '@/ai/flows/ai-scavenge-list-generator.ts';
+// AI functionality disabled per user request
+export {};
